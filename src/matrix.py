@@ -1,7 +1,21 @@
 # for test purpose:
 m1=[[1,2],[3,4],[5,6]]
 m2=[[3,4],[5,6],[7,8]]
-s=[1,2,3]
+s=[[1,2,3]]
+t=[[3,4,5]]
+a=[[1],[2],[3]]
+
+def indentifyVector(vector):
+    """
+    Differ vector beetween a row vector and a coloumn vector. 
+    Returns 1 if the vector is a row vector and returns 0 if the cvector is a coloumn vector.
+    """
+    if(len(vector)==1):
+        return 1
+    else:
+        return 0
+
+
 def shape(matrix):
     """
     returns a list containing two value, first value of the list is
@@ -60,19 +74,45 @@ def scaMatSum(scale,mat):
 def broadcast(vector,mat):
     """
     Calculates the Broadcasting operation of one vector and one matrix.
-    :param list vector:
+    :param list vector: You should enter a vector transpose.
     :param list mat:
     :return list:
     """
-    for i in range(len(vector)):
-        for j in range(shape(mat)[1]):
-            mat[i][j]=vector[i]+mat[i][j]
+    if(indentifyVector(vector)==1):
+        print("You should enter a column vector to do the broadcasting operation.")
+    else:
+        for i in range(len(vector)):
+            for j in range(shape(mat)[1]):
+                mat[i][j]=vector[i][0]+mat[i][j]
     return mat
 
+def matTranspose(mat):
+    """
+    Calculate the transpose of a matrix.
+    """
+    for row in mat:
+        transposed_m=list(zip(*mat))
+        return transposed_m
 
-def matrixProduct(mat1,mat2):
+def vectorTranspose(vector):
     """
-    Calculates the product of two matrix.
+    Calculate the transpose of a vector.
     """
-    # check that either the mat1 and mat2 are productable.
-    if()
+    m=vector
+    # if(indentifyVector(m)==0):
+    rez = [[m[j][i] for j in range(len(m))] for i in range(len(m[0]))]
+    return rez
+
+
+def vectorDotPro(vector1,vector2):
+    """
+    Calculate the dot product of two vectors.
+    """
+    dot=0
+    if(shape(vector1)!=shape(vector2)):
+        print("You can only calculate the dot product of two vectors which have the same shape.")
+    else:
+        for i in range(shape(vector1)[0]):
+            for j in range(shape(vector2)[1]):
+                    dot=vector1[i][j]*vector2[i][j]
+    return dot
