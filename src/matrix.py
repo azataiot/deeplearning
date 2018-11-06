@@ -5,7 +5,8 @@ s=[[1,2,3]]
 t=[[3,4,5]]
 a=[[1],[2],[3]]
 b=[[3],[4],[5]]
-
+m=4
+n=5
 ## vectors and scales above works just for a test purpose.
 
 
