@@ -145,3 +145,23 @@ def matrixProduct(mat1,mat2):
                 for k in range(shape(mat2)[0]):
                     matrix[i][j] +=mat1[i][k]*mat2[k][j]
     return matrix
+
+
+def hadamardProduct(mat1,mat2):
+    """
+    HadamardProduct is the product of two matrix elements that placed in the same index.
+    元素对应乘积(element-wise product)或 者 Hadamard 乘积(Hadamard product)
+    是两个矩阵对应元素的成绩
+    """
+    if(shape(mat1)!=shape(mat2)):
+        print("""To calculate the Hadamard Product of two matrix, they should have the same shape!
+        For example, matrix A with 3 row 3 col and matrix B with 3 row 3 col can be processed for calculating
+        the Hadamard Product while A can't with a matrix C have 3 row and 4 col ! """)
+    else:
+        [row,col]=shape(mat1)
+        result_matrix=[[0 for i in range(shape(mat1)[1])] for j in range(shape(mat1)[0])]
+        for i in range(shape(mat1)[0]):
+            for j in range(shape(mat1)[1]):
+                result_matrix[i][j]= mat1[i][j]* mat2[i][j]
+        return result_matrix
+        
