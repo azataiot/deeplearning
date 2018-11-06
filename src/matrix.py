@@ -4,7 +4,7 @@ m2=[[3,4],[5,6],[7,8]]
 s=[[1,2,3]]
 t=[[3,4,5]]
 a=[[1],[2],[3]]
-
+b=[[3],[4],[5]]
 def indentifyVector(vector):
     """
     Differ vector beetween a row vector and a coloumn vector. 
@@ -110,9 +110,89 @@ def vectorDotPro(vector1,vector2):
     """
     dot=0
     if(shape(vector1)!=shape(vector2)):
-        print("You can only calculate the dot product of two vectors which have the same shape.")
+        vector1=vectorTranspose(vector1)
+        for i in range(shape(vector1)[0]):
+            for j in range(shape(vector2)[1]):
+                    dot=vector1[i][j]*vector2[i][j]
     else:
         for i in range(shape(vector1)[0]):
             for j in range(shape(vector2)[1]):
                     dot=vector1[i][j]*vector2[i][j]
     return dot
+
+
+
+def matrixProduct(mat1,mat2):
+    if(shape(mat1)[1]!=shape(mat2)[0]):
+        print(""" To calculate the matrix product, the first matrix row numbers should be
+        equal to the secound matrix column number.""")
+    else:
+        trans_mat1=matTranspose(mat1)
+        matrix=[[0 for i in range(shape(mat1)[0])] for i in range(shape(mat2)[1])]
+        row_matrix=len(matrix)
+        col_matrix=len(matrix[0])
+        for i in range(row_matrix):
+            for j in range(col_matrix):
+                matrix[i][j]=vectorDotPro(trans_mat1[i],mat2[j])
+
+
+mat1=[[0,3,5],[5,5,2]]
+mat2=[[3,4],[3,-2],[4,-2]]
+
+for row in mat1:
+    print(row)
+[m1,n1]=shape(mat1)
+print([m1,n1])
+print("*******")
+
+for row in mat2:
+    print(row)
+[m2,n2]=shape(mat2)
+print([m2,n2])
+print("&&&&&&&")
+
+for i in range(m1):
+    first=mat1[i]
+    print(first)
+print("\n")
+for j in range(n2):
+    second=(matTranspose(mat2))[j]
+    print(second)
+print("\n")
+product=[[0 for row in range(m1)] for col in range(n2)]
+for row in product:
+    print(row)
+
+print("\n")
+
+for row in range(m1):
+    for col in range(n2):
+        first=mat1[i]
+        second=list((matTranspose(mat2))[j])
+        
+        print(type(first))
+        print(type(second))
+
+        # product[i][j]=vectorDotPro(first,second)
+
+first=first=mat1[0]
+print(first)
+print("\n")
+second=(matTranspose(mat2))[0]
+print(second)
+
+seeee=matTranspose(mat2)
+print(seeee)
+
+
+# 数学公式在python 中的实现的时候，注意数学公式，按照公式把公式内容写出来就可以了。
+
+# 首先，注意公式中的每一个变量的意义，比如说， C 是我们的product 最后的矩阵，而i 是C 的行，j 是C的列。
+
+# C 总共有 A的行数 个行和 B 的列数个 列。 也就是成绩是取第一个矩阵的行，第二个矩阵的列数。
+
+mat1=[[0,3,5],[5,5,2]]
+mat2=[[3,4],[3,-2],[4,-2]]
+
+
+first we have to 
