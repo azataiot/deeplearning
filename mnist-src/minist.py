@@ -1,4 +1,5 @@
 import pickle,gzip,numpy
+from theano import *
 
 # 读取数据集
 f=gzip.open('mnist-data/mnist.pkl.gz','rb')
@@ -22,3 +23,13 @@ def shared_dataset(data_xy):
     # 因此我们并不会直接返回一个 shared_y 的值,而是将这个变量转化为 整数类型再返回.
     # 这个小小的技巧就可以避免上面说的麻烦.
     return shared_x, T.cast(shared_y,'int32')
+test_set_x,test_set_y = shared_dataset(test_set)
+valid_set_x,valid_set_y = shared_dataset(valid_set)
+train_set_x,train_set_y=shared_dataset(train_set)
+
+batch_size = 500 # minibatch 的大小.
+
+
+#访问第三个 minibatch 中的数据
+data = train_set_x[2*batch_size:3*batch_size]
+label = train_set_y[2*batch_size:3*batch_size]
